@@ -3,12 +3,13 @@ import { messaging, db } from "../../firebase";
 import { collection, setDoc, doc } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { getToken} from "firebase/messaging";
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class NotifyService {
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   async requestnotifyPermission(){
     const permission = await Notification.requestPermission();
@@ -52,7 +53,7 @@ export class NotifyService {
           uid: newUid,
           deviceToken: token,
         });
-
+        this.router.navigate(['/about']);
         console.log("Token stored successfully");
 
         // // Delete Token

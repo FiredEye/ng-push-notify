@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { PokeService } from './services/poke.service';
-import { NotifyService } from './services/notify.service';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,CommonModule, RouterOutlet,],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [PokeService],
@@ -16,17 +17,12 @@ export class AppComponent implements OnInit {
   bidoof: any = {};
   showBidoof: boolean = false;
   objLength = 0;
-  constructor(private pokeService: PokeService,private notifyService:NotifyService) {}
+  constructor(private pokeService: PokeService,) {}
 
   ngOnInit(): void {
     // this.getPokemonData();
   }
-requestNotification(){
-this.notifyService.requestnotifyPermission()
-}
-sendToken(){
-  this.notifyService.requestAndSendToken()
-}
+
   // getPokemonData() {
   //   this.service.getPokemonData().subscribe({
   //     next: (res: any) => {
